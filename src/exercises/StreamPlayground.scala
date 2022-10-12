@@ -76,5 +76,21 @@ object StreamPlayground extends App {
 
     println(startFrom0.map(_ * 2).take(100).toList())
     println(startFrom0.flatMap(x => new Cons(x, new Cons(x + 1, EmptyStream))).take(10).toList())
+    println(startFrom0.filter(_ < 10).take(10).toList())
+//    println(startFrom0.filter(_ < 10).take(11).toList())  will crash
+    println(startFrom0.filter(_ < 10).take(10).take(20).toList())
 
+    // TODO
+   def fibonacci(first :BigInt, second: BigInt) : MyStream[BigInt]  =
+       new Cons(first, fibonacci(second, first + second))
+
+    println(fibonacci(1,1).take(100).toList())
+
+    //eratoothenes sieve
+
+    def eratosthenes(nnumbers: MyStream[Int]) : MyStream[Int]  =
+        if (nnumbers.isEmpty) nnumbers
+        else new Cons(nnumbers.head, eratosthenes(nnumbers.tail.filter(_ % nnumbers.head != 0)))
+
+    println(eratosthenes(MyStream.from(2)(_ + 1)).take(100).toList())
 }
