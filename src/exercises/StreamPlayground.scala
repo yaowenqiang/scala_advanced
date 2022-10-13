@@ -88,9 +88,9 @@ object StreamPlayground extends App {
 
     //eratoothenes sieve
 
-    def eratosthenes(nnumbers: MyStream[Int]) : MyStream[Int]  =
-        if (nnumbers.isEmpty) nnumbers
-        else new Cons(nnumbers.head, eratosthenes(nnumbers.tail.filter(_ % nnumbers.head != 0)))
+    def eratosthenes(numbers: MyStream[Int]) : MyStream[Int]  =
+        if (numbers.isEmpty) numbers
+        else new Cons(numbers.head, eratosthenes(numbers.tail.filter(_ % numbers.head != 0)))
 
     println(eratosthenes(MyStream.from(2)(_ + 1)).take(100).toList())
 }
