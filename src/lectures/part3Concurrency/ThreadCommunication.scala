@@ -247,7 +247,7 @@ object ThreadCommunication extends App {
 //    new Thread(() => sam.bow(pierre)).start() // sam's lock, then pierre.lock
 //    new Thread(() => pierre.bow(sam)).start() // pierre.lock, then sam's lock
     // live lock
-
+        // TODO
         new Thread(() => sam.pass(pierre)).start() // sam's lock, then pierre.lock
         new Thread(() => pierre.pass(sam)).start() // pierre.lock, then sam's lock
 
