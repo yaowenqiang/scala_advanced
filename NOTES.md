@@ -77,3 +77,50 @@ Operations must satisfy the monad laws:
     Some(v).flatMap(x => f(x).flatMap(g)) = f(v).flatMap(g)
 ```
 
+
+## Synchronized
+
+Entering a synchronized expression on an object locks the object:
+```scala
+val someObject = "hello"
+someObject.synchronized { // locks the object's monitor  - JVM  
+    // code // any other thread trying to run this will block
+}
+// release the lock
+```
+
+only AnyRefs can have synchronized blocks
+General principles:
+
++ make no assumptions about who gets the lock first
++ keep locking to a minimum
++ maintain thread safety at ALL times in parallel application
+
+## Wait() and notify()
+
+wait()-ing on an object's monitor suspends you (the thread) indefinitely
+```scala
+// thread 1
+val someObject = "Hello"
+someObject.synchronized { // lock the object monitor
+    // code part 1
+    someObject.wait() // release the lock and .. wait
+    // code part 2 // when allowed to proceed, lock the monitor again and continue
+}
+
+```
+
+```scala
+// thread 2
+val someObject = "Hello"
+someObject.synchronized { // lock the object monitor
+  // more code
+  someObject.notify() // signal ONE sleeping thread they may continue, which one ? you don't know
+}
+// but only after i'm done and unlock the monitor
+// use notifyAll to awaken ALL Threads
+
+```
+
+Waiting and notifying only work on synchronized expressions
+

@@ -137,6 +137,8 @@ object Intro extends App {
 
     var message = ""
     val awesomeThread = new Thread(() => {
+//        Thread.currentThread().setName("awesomeThread")
+        //        Thread.currentThread().setName(Context + TID + params + current Time)
         Thread.sleep(1000)
         message = "Scala is awesome"
     })
