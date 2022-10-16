@@ -124,3 +124,19 @@ someObject.synchronized { // lock the object monitor
 
 Waiting and notifying only work on synchronized expressions
 
+## Implicit
+
+### Best practices
+
+when defining an implicit val: 
+
+#1 
+if there is a single possible value for it
+and you can edit the code for the type
+then define the implicit in the companion
+
+#2 
+if there are many possible values for it,
+but a single good one
+and you can edit the code for the type
+then define the good implicit in the companion
