@@ -80,4 +80,6 @@ object PimpMyLibrary extends App {
     println(aConditionedValue)
 
     // implicit method is not encouraged
+
+
 }
