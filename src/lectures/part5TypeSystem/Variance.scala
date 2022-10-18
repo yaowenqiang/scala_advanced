@@ -120,7 +120,8 @@ object Variance extends App {
         def checkVehicles[S <: T](conditions: String) : List[S] = ???
 //        def flatMap[S](f: T => XParking[S]) : XParking[S] = ???
         // TODO
-        def flatMap[R <:T, S](f: T => XParking[R]) : XParking[S] = ???
+//        def flatMap[R <:T, S](f: T => XParking[R]) : XParking[S] = ???
+        def flatMap[R <:T, S](f: Function1[R, XParking[S]]) : XParking[S] = ???
     }
     class IList[T]
 
