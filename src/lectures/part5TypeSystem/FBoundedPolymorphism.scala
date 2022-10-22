@@ -119,19 +119,19 @@ object FBoundedPolymorphism extends App {
 
 
     trait Animal[A] { // pure type classes
-        def bread[a: A] : List[A]
+        def bread(a: A) : List[A]
     }
     class Dog
     object Dog {
         implicit object DogAnimals extends Animal[Dog] {
-            override def bread[a: Dog]: List[Dog] = List()
+            override def bread(a: Dog): List[Dog] = List()
         }
     }
 
     class Cat
     object Cat {
         implicit object CatAnimal extends Animal[Dog] {
-            override def bread[a: Dog]: List[Dog] = List()
+            override def bread(a: Dog): List[Dog] = List()
         }
     }
 
@@ -144,6 +144,6 @@ object FBoundedPolymorphism extends App {
     dog.bread
 
     val cat = new Cat
-    cat.bread
+//    cat.bread
 
 }
